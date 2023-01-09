@@ -3,7 +3,7 @@
     using BooksWebApi.Data;
     using BooksWebApi.Data.Models;
     using BooksWebApi.Data.ViewModels;
-
+    using System.Collections.Generic;
 
     public class BookService : IBookService
     {
@@ -32,6 +32,16 @@
 
             data.Books.Add(book);
             data.SaveChanges();
+        }
+
+        public List<Book> AllBooks()
+        {
+            return this.data.Books.ToList();
+        }
+
+        public Book GetById(int id)
+        {
+            return this.data.Books?.FirstOrDefault(x => x.Id == id);
         }
     }
 }
