@@ -1,4 +1,5 @@
 using BooksWebApi.Data;
+using BooksWebApi.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddSwaggerGen();
 builder.Services
     .AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddTransient<IBookService, BookService>();
 
 var app = builder.Build();
 
