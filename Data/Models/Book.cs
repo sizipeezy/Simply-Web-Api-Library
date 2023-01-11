@@ -1,4 +1,6 @@
-﻿namespace BooksWebApi.Data.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BooksWebApi.Data.Models
 {
     public class Book
     {
@@ -21,5 +23,13 @@
 
         public string Author { get; set; }
 
+        //nav properties
+
+        public int? PublisherId { get; set; }
+
+        [ForeignKey(nameof(PublisherId))]
+        public Publisher Publisher { get; set; }
+
+        public List<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
     }
 }

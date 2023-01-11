@@ -23,7 +23,8 @@
                         Genre = "Fantasy",
                         Author = "Johnathan",
                         CoverUrl = "https..",
-                        DateAdded = DateTime.Now
+                        DateAdded = DateTime.Now,
+                        PublisherId = 2,
 
                     }, new Book()
                     {
@@ -33,7 +34,8 @@
                         Genre = "Fantasy",
                         Author = "Johnathan 2",
                         CoverUrl = "https..",
-                        DateAdded = DateTime.Now
+                        DateAdded = DateTime.Now,
+                        PublisherId = 2,
 
                     }, new Book()
                     {
@@ -43,8 +45,8 @@
                         Genre = "Fantasy",
                         Author = "Johnathan 3",
                         CoverUrl = "https..",
-                        DateAdded = DateTime.Now
-
+                        DateAdded = DateTime.Now,
+                       PublisherId = 1,
                     });
 
                     context.SaveChanges();
