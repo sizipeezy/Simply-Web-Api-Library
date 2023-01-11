@@ -16,6 +16,7 @@ builder.Services
     options.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IBookService, BookService>();
+builder.Services.AddTransient<IAuthorService, AuthorService>();
 
 var app = builder.Build();
 
