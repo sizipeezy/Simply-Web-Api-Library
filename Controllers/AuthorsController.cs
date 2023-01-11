@@ -23,5 +23,12 @@
             authorService.AddAuthor(model);
             return Ok();
         }
+
+        [HttpGet("get-author-with-books")]
+        public IActionResult GetAuthorsWithBooks(int id)
+        {
+            var response = authorService.GetAuthorWithBooks(id);
+            return Ok(response);
+        }
     }
 }
