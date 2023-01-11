@@ -47,5 +47,12 @@
 
             return Ok(book);
         }
+
+        [HttpDelete("delete-by-id")]
+        public IActionResult DeleteById(int id)
+        {
+            this.bookService.Delete(id);
+            return Ok();
+        }
     }
 }

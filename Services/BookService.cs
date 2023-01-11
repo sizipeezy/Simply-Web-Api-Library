@@ -37,6 +37,18 @@
 
         public List<Book> AllBooks() => this.data.Books.ToList();
 
+        public void Delete(int id) 
+        {
+            var book = this.data.Books.FirstOrDefault(x => x.Id == id);
+            if(book != null)
+            {
+                this.data.Books.Remove(book);
+            }
+
+            this.data.SaveChanges();
+        }
+      
+
         public Book GetById(int id) => this.data.Books?.FirstOrDefault(x => x.Id == id);
 
         public Book UpdateById(int id, BookViewModel model)

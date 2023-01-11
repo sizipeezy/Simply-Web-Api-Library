@@ -11,5 +11,7 @@
         public Book GetById(int id);
 
         public Book UpdateById(int id, BookViewModel model);
+
+        public void Delete(int id);
     }
 }
