@@ -4,6 +4,7 @@
     using BooksWebApi.Data.Models;
     using BooksWebApi.Data.ViewModels;
     using System.Collections.Generic;
+    using System.Threading;
 
     public class BookService : IBookService
     {
@@ -34,14 +35,29 @@
             data.SaveChanges();
         }
 
-        public List<Book> AllBooks()
-        {
-            return this.data.Books.ToList();
-        }
+        public List<Book> AllBooks() => this.data.Books.ToList();
 
-        public Book GetById(int id)
+        public Book GetById(int id) => this.data.Books?.FirstOrDefault(x => x.Id == id);
+
+        public Book UpdateById(int id, BookViewModel model)
         {
-            return this.data.Books?.FirstOrDefault(x => x.Id == id);
+            var book = this.data.Books.FirstOrDefault(x => x.Id == id);
+            if(book != null)
+            {
+                book.Title = model.Title;
+                book.Description = model.Description;
+                book.IsRead = model.IsRead;
+                book.DateRead = model.IsRead ? model.DateRead.Value : null;
+                book.CoverUrl = model.CoverUrl;
+                book.Rate = model.IsRead ? model.Rate.Value : null;
+                book.Genre = model.Genre;
+                book.Author = model.Author;
+
+                this.data.SaveChanges();
+            }
+
+            return book;
+
         }
     }
 }

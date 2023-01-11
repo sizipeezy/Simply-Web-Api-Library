@@ -9,5 +9,7 @@
         public List<Book> AllBooks();
 
         public Book GetById(int id);
+
+        public Book UpdateById(int id, BookViewModel model);
     }
 }

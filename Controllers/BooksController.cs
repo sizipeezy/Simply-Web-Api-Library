@@ -17,6 +17,13 @@
             this.bookService = bookService;
         }
 
+        [HttpPut("update-book")]
+        public IActionResult UpdateBookById(int id, [FromBody]BookViewModel model)
+        {
+            var updatedBook = bookService.UpdateById(id, model);
+            return Ok(updatedBook);
+        }
+
         [HttpPost("add-book")]
         public IActionResult AddBook(BookViewModel model)
         {
