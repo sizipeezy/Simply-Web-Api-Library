@@ -15,7 +15,7 @@
             this.data = data;
         }
 
-        public void AddBook(BookViewModel model)
+        public void AddBookWithAuthors(BookViewModel model)
         {
             var book = new Book()
             {
@@ -26,13 +26,23 @@
                 CoverUrl = model.CoverUrl,
                 Rate = model.IsRead ? model.Rate.Value : null,
                 Genre = model.Genre,
-                Author = model.Author,
                 DateAdded = DateTime.UtcNow,
-
+                PublisherId = model.PublisherId,
             };
 
             data.Books.Add(book);
             data.SaveChanges();
+
+            foreach (var id in model.AuthorsIds)
+            {
+                var booksAuthors = new BookAuthor()
+                {
+                    BookId = book.Id,
+                    AuthorId = id
+                };
+                data.BookAuthors.Add(booksAuthors);
+                data.SaveChanges();
+            }
         }
 
         public List<Book> AllBooks() => this.data.Books.ToList();
@@ -63,7 +73,6 @@
                 book.CoverUrl = model.CoverUrl;
                 book.Rate = model.IsRead ? model.Rate.Value : null;
                 book.Genre = model.Genre;
-                book.Author = model.Author;
 
                 this.data.SaveChanges();
             }

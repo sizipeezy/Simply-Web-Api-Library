@@ -24,10 +24,10 @@
             return Ok(updatedBook);
         }
 
-        [HttpPost("add-book")]
-        public IActionResult AddBook(BookViewModel model)
+        [HttpPost("add-book-with-authors")]
+        public IActionResult AddBookWithAuthors(BookViewModel model)
         {
-            bookService.AddBook(model);
+            bookService.AddBookWithAuthors(model);
 
             return Ok();
         }

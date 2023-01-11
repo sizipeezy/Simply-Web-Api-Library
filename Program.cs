@@ -17,6 +17,7 @@ builder.Services
 
 builder.Services.AddTransient<IBookService, BookService>();
 builder.Services.AddTransient<IAuthorService, AuthorService>();
+builder.Services.AddTransient<IPublisherService, PublisherService>();
 
 var app = builder.Build();
 

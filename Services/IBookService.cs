@@ -4,7 +4,7 @@
     using BooksWebApi.Data.ViewModels;
     public interface IBookService
     {
-        public void AddBook(BookViewModel model);
+        public void AddBookWithAuthors(BookViewModel model);
 
         public List<Book> AllBooks();
 

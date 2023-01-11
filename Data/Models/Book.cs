@@ -21,8 +21,6 @@ namespace BooksWebApi.Data.Models
 
         public string Genre { get; set; }
 
-        public string Author { get; set; }
-
         //nav properties
 
         public int? PublisherId { get; set; }
