@@ -57,9 +57,26 @@
 
             this.data.SaveChanges();
         }
-      
 
-        public Book GetById(int id) => this.data.Books?.FirstOrDefault(x => x.Id == id);
+
+        public BookWithAuthors GetById(int id)
+        {
+            var bookWithAuthors = this.data.Books.Where(x => x.Id == id)
+                .Select(model => new BookWithAuthors
+            {
+                Title = model.Title,
+                Description = model.Description,
+                IsRead = model.IsRead,
+                DateRead = model.IsRead ? model.DateRead.Value : null,
+                CoverUrl = model.CoverUrl,
+                Rate = model.IsRead ? model.Rate.Value : null,
+                Genre = model.Genre,
+                PublisherName = model.Publisher.Name,
+                AuthorNames = model.BookAuthors.Select(x => x.Author.Name).ToList()
+            }).FirstOrDefault();
+
+            return bookWithAuthors; 
+        }
 
         public Book UpdateById(int id, BookViewModel model)
         {
