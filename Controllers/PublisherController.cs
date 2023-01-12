@@ -22,5 +22,12 @@
             publisherService.AddPublisher(model);
             return Ok();
         }
+
+        [HttpGet("publisher-with-books-authors/{id}")]
+        public IActionResult GetPublisher(int id)
+        {
+            var response = this.publisherService.GetPublisherData(id);
+            return Ok(response);
+        }
     }
 }
