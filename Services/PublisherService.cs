@@ -25,5 +25,21 @@
 
             this.data.SaveChanges();
         }
+
+        public PublisherWithBooksAndAuthors GetPublisherData(int id)
+        {
+            var publisher = this.data.Publishers.Where(x => x.Id == id)
+                .Select(x => new PublisherWithBooksAndAuthors
+                {
+                    Name = x.Name,
+                    BookAuthors = x.Books.Select(x => new BookAuthorViewModel
+                    {
+                        BookName = x.Title,
+                        BookAuthors = x.BookAuthors.Select(x => x.Author.Name).ToList()
+                    }).ToList()
+                }).FirstOrDefault();
+
+            return publisher;
+        }
     }
 }
